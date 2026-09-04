@@ -1,0 +1,234 @@
+.country {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+
+  transition: 0.3s;
+
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+.country:hover {
+  transform: translateY(-8px);
+
+  border-color: #93c5fd;
+
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+}
+
+
+/* FLAG */
+
+.flag-container {
+  height: 210px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: #f1f5f9;
+}
+
+.country img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.5s;
+}
+
+.country:hover img {
+  transform: scale(1.06);
+}
+
+
+/* VISITED BADGE */
+
+.visited-badge {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  padding: 7px 12px;
+
+  border-radius: 50px;
+
+  background: #16a34a;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* CONTENT */
+
+.country-content {
+  padding: 22px;
+}
+
+
+/* TITLE */
+
+.country-title {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+.country-title h2 {
+  font-size: 23px;
+
+  margin-top: 8px;
+
+  color: #172033;
+}
+
+.country-code {
+  font-size: 11px;
+
+  font-weight: 800;
+
+  color: #2563eb;
+
+  background: #eff6ff;
+
+  padding: 5px 8px;
+
+  border-radius: 6px;
+}
+
+.globe-icon {
+  font-size: 25px;
+}
+
+
+/* INFORMATION */
+
+.country-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.info-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.info-item > span {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f1f5f9;
+}
+
+.info-item div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.info-item small {
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+}
+
+.info-item strong {
+  color: #334155;
+
+  font-size: 14px;
+}
+
+
+/* BUTTON */
+
+.visit-button {
+  width: 100%;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.visit-button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+}
+
+
+/* VISITED BUTTON */
+
+.visited-button {
+  background: #16a34a;
+}
+
+.visited-button:hover {
+  background: #15803d;
+}
+
+
+/* VISITED CARD */
+
+.country-visited {
+  border-color: #86efac;
+
+  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.1);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+  .country-content {
+    padding: 18px;
+  }
+
+  .flag-container {
+    height: 190px;
+  }
+
+  .country-title h2 {
+    font-size: 21px;
+  }
+}

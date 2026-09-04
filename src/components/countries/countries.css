@@ -1,0 +1,214 @@
+
+.countries-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 30px;
+
+  margin-bottom: 35px;
+}
+
+.section-label {
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.countries-header h2 {
+  font-size: 42px;
+
+  margin: 8px 0;
+}
+
+.countries-header p {
+  color: #6b7280;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+  display: flex;
+  gap: 15px;
+}
+
+.stat-card {
+  min-width: 160px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.stat-card > span {
+  font-size: 28px;
+}
+
+.stat-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card strong {
+  font-size: 22px;
+}
+
+.stat-card small {
+  color: #6b7280;
+}
+
+.visited-stat {
+  border-color: #ddd6fe;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-container {
+  max-width: 650px;
+
+  margin: 0 auto 20px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  padding: 5px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+
+  transition: 0.3s;
+}
+
+.search-container:focus-within {
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 0 0 4px #dbeafe,
+    0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.search-container span {
+  font-size: 20px;
+}
+
+.search-container input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  padding: 15px 5px;
+
+  font-size: 16px;
+
+  background: transparent;
+}
+
+/* =========================
+   RESULT INFO
+========================= */
+
+.result-info {
+  margin: 20px 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.countries {
+  display: grid;
+
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  );
+
+  gap: 24px;
+}
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+  text-align: center;
+
+  padding: 80px 20px;
+
+  background: white;
+
+  border-radius: 20px;
+}
+
+.no-results span {
+  font-size: 60px;
+}
+
+.no-results h2 {
+  margin: 15px 0 5px;
+}
+
+.no-results p {
+  color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+  .countries-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats {
+    width: 100%;
+  }
+
+  .stat-card {
+    flex: 1;
+  }
+
+  .countries-header h2 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 500px) {
+  .stats {
+    flex-direction: column;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+}
