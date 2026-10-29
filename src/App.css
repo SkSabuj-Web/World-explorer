@@ -253,6 +253,31 @@ a {
   animation: spin 1s linear infinite;
 }
 
+.load-error {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.load-error p {
+  color: #6b7280;
+}
+
+.load-error button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -315,4 +340,3 @@ a {
     padding: 50px 15px;
   }
 }
-

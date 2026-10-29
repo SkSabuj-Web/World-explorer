@@ -1,23 +1,49 @@
 
-import { Suspense } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import type { countryType } from "./type";
+import { isCountry, type countryType } from "./type";
 import Countries from "./components/countries/countries";
 
-const countriesPromise = async (): Promise<countryType[]> => {
+async function fetchCountries(signal: AbortSignal): Promise<countryType[]> {
   const response = await fetch(
-    "https://openapi.programming-hero.com/api/all"
+    "https://openapi.programming-hero.com/api/all",
+    { signal }
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch countries");
+    throw new Error(`Country API request failed (${response.status})`);
   }
 
-  const data = await response.json();
-  return data.countries;
-};
+  const data: unknown = await response.json();
+  if (!Array.isArray(data) || !data.every(isCountry)) {
+    throw new Error("Country API returned an invalid country list");
+  }
+
+  return data;
+}
 
 function App() {
+  const [countries, setCountries] = useState<countryType[] | null>(null);
+  const [hasCountriesError, setHasCountriesError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetchCountries(controller.signal)
+      .then(setCountries)
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        console.error("Failed to load country data.", error);
+        setHasCountriesError(true);
+      });
+
+    return () => controller.abort();
+  }, [loadAttempt]);
+
   return (
     <div className="app">
       {/* Navbar */}
@@ -37,7 +63,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <header className="hero">
+      <header id="explore" className="hero">
         <div className="hero-content">
           <span className="hero-badge">
             🌎 Discover the World
@@ -63,17 +89,29 @@ function App() {
 
       {/* Countries */}
       <main id="countries" className="main-content">
-        <Suspense
-          fallback={
-            <div className="loading">
-              <div className="loader"></div>
-              <h2>Exploring the world...</h2>
-              <p>Loading countries for you.</p>
-            </div>
-          }
-        >
-          <Countries countriesPromise={countriesPromise()} />
-        </Suspense>
+        {countries ? (
+          <Countries countries={countries} />
+        ) : hasCountriesError ? (
+          <div className="load-error" role="alert">
+            <h2>Country data is temporarily unavailable.</h2>
+            <p>Please check your connection and try again.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setHasCountriesError(false);
+                setLoadAttempt((attempt) => attempt + 1);
+              }}
+            >
+              Try again
+            </button>
+          </div>
+        ) : (
+          <div className="loading" role="status">
+            <div className="loader"></div>
+            <h2>Exploring the world...</h2>
+            <p>Loading countries for you.</p>
+          </div>
+        )}
       </main>
 
       {/* Footer */}
@@ -89,4 +127,3 @@ function App() {
 }
 
 export default App;
-

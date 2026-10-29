@@ -3,5 +3,5 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/World-explorer/',
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/World-explorer/' : '/',
 })

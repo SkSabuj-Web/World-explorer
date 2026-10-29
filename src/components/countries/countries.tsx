@@ -1,18 +1,16 @@
 
-import { use, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { countryType } from "../../type";
 import Country from "../country/country";
 import "./countries.css";
 
 export interface CountriesProps {
-  countriesPromise: Promise<countryType[]>;
+  countries: countryType[];
 }
 
 export default function Countries({
-  countriesPromise,
+  countries,
 }: CountriesProps) {
-  const countries = use(countriesPromise);
-
   const [visitedCountries, setVisitedCountries] = useState<
     countryType[]
   >([]);
@@ -117,4 +115,3 @@ export default function Countries({
     </section>
   );
 }
-
